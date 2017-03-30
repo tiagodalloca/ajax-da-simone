@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Ajax-simone</title>
+	</head>
+	<body>
+		<h1>Verifique o seu usuario</h1>
+		<input id="nome" type="text" value="" placeholder="Nome"/><br/>
+		<input id="senha" type="password" value="" placeholder="Senha"/><br/>
+		<input id="botao" type="button" value="Valido?">
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+		<script>
+		$("#botao").on("click", validar);
+			
+		function validar(){
+				var nome =  $("#nome").val();
+				var senha = $("#senha").val();
+				$.ajax({
+						url: "usuarios.json"
+				}).done(function(data){
+						var usuarios = JSON.parse(data);
+						if (usuarios[nome] == senha){
+								alert("Logou!");
+						}
+						else{
+								alert("Não logou!");
+						}
+				})
+		}
+		</script>
+	</body>
+</html>
